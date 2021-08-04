@@ -39,7 +39,7 @@ async def pause(_, message: Message):
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "paused"
     ):
-        await message.reply_text("❗ Tidak ada yang dimainkan!")
+        await message.reply_text("❗ Tidak ada lagu yang dimainkan!")
     else:
         callsmusic.pytgcalls.pause_stream(chat_id)
         await message.reply_text("▶️ Dijeda!")
@@ -53,7 +53,7 @@ async def resume(_, message: Message):
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "playing"
     ):
-        await message.reply_text("❗ Tidak ada yang bisa dijeda!")
+        await message.reply_text("❗ Tidak ada lagu yang bisa dijeda!")
     else:
         callsmusic.pytgcalls.resume_stream(chat_id)
         await message.reply_text("⏸ Dilanjutkan!")
@@ -83,7 +83,7 @@ async def skip(_, message: Message):
     global que
     chat_id = get_chat_id(message.chat)
     if chat_id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("❗ Tidak ada yang diputar untuk di skip!")
+        await message.reply_text("❗ Tidak ada lagu yang diputar untuk di skip!")
     else:
         callsmusic.queues.task_done(chat_id)
 
@@ -112,4 +112,4 @@ async def admincache(client, message: Message):
             for member in await message.chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("❇️ Admin cache di resfresh!")
+    await message.reply_text("❇️ Admin cache di refresh!")
